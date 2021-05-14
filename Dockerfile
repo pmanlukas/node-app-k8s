@@ -1,5 +1,5 @@
-# Raspberry PI
-FROM arm32v7/node
+# base image
+FROM node:14
 
 # Create app directory
 WORKDIR /usr/src/app
