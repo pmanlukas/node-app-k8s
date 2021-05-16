@@ -23,7 +23,7 @@ const getZenQuote = async ctx => {
 };
 
 server(
-  { log: "debug", env: "development" },
+  { log: "debug", env: "production" },
   get("/", [
     getZenQuote,
     async ctx => {
