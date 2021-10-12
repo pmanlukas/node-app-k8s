@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-app-k8s
+spec:
+  selector:
+    matchLabels:
+      name: node-app-k8s
+  template:
+    metadata:
+      labels:
+        name: node-app-k8s
+    spec:
+      containers:
+        - name: app
+          image: ghcr.io/pmanlukas/node-app-k8s:latest
+          ports:
+            - containerPort: 3000
