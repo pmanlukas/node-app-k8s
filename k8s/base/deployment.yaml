@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-world-python
+  name: node-app
   labels:
-    app: hello-world-python
+    app: node-app
 spec:
   selector:
     matchLabels:
-      app: hello-world-python
+      app: node-app
   replicas: 1
   template:
     metadata:
       labels:
-        app: hello-world-python
+        app: node-app
     spec:
       containers:
-      - name: hello-world-python
-        image: hello-world-python
+      - name: node-app
+        image: node-app
         ports:
-        - containerPort: 8080
+        - containerPort: 3000
           protocol: TCP
         env:
           - name: SITE_NAME
