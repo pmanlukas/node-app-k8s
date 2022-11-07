@@ -1,0 +1,32 @@
+apiVersion: skaffold/v2beta16
+kind: Config
+metadata:
+  name: node-app
+build:
+  local: 
+    push: false
+  artifacts:
+  - image: node-app
+    context: app
+    docker:
+      dockerfile: Dockerfile
+deploy:
+  kustomize:
+    paths: 
+      - k8s/overlays/dev
+portForward:
+- resourceType: deployment
+  resourceName: node-app
+  port: 3000 
+  localPort: 3000
+profiles:
+  - name: staging
+    deploy:
+      kustomize:
+        paths: 
+          - k8s/overlays/staging
+  - name: prod
+    deploy:
+      kustomize:
+        paths: 
+          - k8s/overlays/prod

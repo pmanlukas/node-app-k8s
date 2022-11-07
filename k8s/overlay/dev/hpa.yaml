@@ -3,16 +3,12 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: node-app
 spec:
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: node-app
   minReplicas: 1
-  maxReplicas: 5
+  maxReplicas: 2
   metrics:
   - type: Resource
     resource:
       name: cpu
       target:
         type: Utilization
-        averageUtilization: 50
+        averageUtilization: 90
