@@ -11,10 +11,14 @@ steps:
 
 #build container
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-:${COMMIT_SHA}', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app', '.' ]
+  args: ['build', '.', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app:${COMMIT_SHA}', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app','-f', 'Dockerfile']  
+  id: build
 
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-:${COMMIT_SHA}']
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app:${COMMIT_SHA}', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app', '.' ]
+
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app:${COMMIT_SHA}']
   id: push
 
 # Create release in Google Cloud Deploy
@@ -26,5 +30,5 @@ steps:
       "--delivery-pipeline", "node-app-pipeline",
       "--region", "us-central1",
       "--annotations", "commitId=${REVISION_ID}",
-      "--images", "node-app=us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-:${COMMIT_SHA}"
+      "--images", "node-app=us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app:${COMMIT_SHA}"
     ]
