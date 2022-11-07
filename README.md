@@ -30,8 +30,7 @@ CI:
 ```
 npm install 
 npm run test
-npm run lint [optional]
-npm run report-coverage
+
 
 ```
 
