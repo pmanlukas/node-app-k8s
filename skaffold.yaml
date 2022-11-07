@@ -1,12 +1,12 @@
 apiVersion: skaffold/v2beta16
 kind: Config
 metadata:
-  name: hello-world-python
+  name: node-app
 build:
   local: 
     push: false
   artifacts:
-  - image: hello-world-python
+  - image: node-app
     context: app
     docker:
       dockerfile: Dockerfile
@@ -16,9 +16,9 @@ deploy:
       - k8s/overlays/dev
 portForward:
 - resourceType: deployment
-  resourceName: hello-world-python
-  port: 8080 
-  localPort: 8080
+  resourceName: node-app
+  port: 3000 
+  localPort: 3000
 profiles:
   - name: staging
     deploy:
