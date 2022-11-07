@@ -1,0 +1,20 @@
+steps:
+#install dependencies and run tests
+- name: node
+  entrypoint: npm
+  args: ['install']
+  id: install dependencies
+- name: node
+  entrypoint: npm
+  args: ['test']
+  id: test
+
+#build container
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app-k8s/node-app:${COMMIT_SHA}', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app-k8s/node-app:latest', '.' ]
+  id: build container
+
+# Push docker image and save image digest for kritis check
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app-k8s/node-app:${COMMIT_SHA}']
+  id: push
