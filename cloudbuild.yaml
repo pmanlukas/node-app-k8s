@@ -11,10 +11,5 @@ steps:
 
 #build container
 - name: 'gcr.io/cloud-builders/docker'
-  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app-k8s/node-app:${COMMIT_SHA}', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app-k8s/node-app:latest', '.' ]
-  id: build container
+  args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app', '.' ]
 
-# Push docker image and save image digest for kritis check
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app-k8s/node-app:${COMMIT_SHA}']
-  id: push
