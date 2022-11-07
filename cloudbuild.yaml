@@ -1,5 +1,5 @@
 steps:
-#install dependencies and run tests
+#install dependencies, audit dependencies and run tests
 - name: node
   entrypoint: npm
   args: ['install']
@@ -12,5 +12,5 @@ steps:
 #build container
 - name: 'gcr.io/cloud-builders/docker'
   args: [ 'build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app', '.' ]
-  images: ['us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app']
+images: ['us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app']
 
