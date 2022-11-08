@@ -27,5 +27,5 @@ steps:
       "--delivery-pipeline", "node-app-pipeline",
       "--region", "us-central1",
       "--annotations", "commitId=${REVISION_ID}",
-      "--images", "node-app=us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-:${COMMIT_SHA}"
+      "--images", "node-app=us-central1-docker.pkg.dev/$PROJECT_ID/node-app/node-app:${COMMIT_SHA}"
     ]
