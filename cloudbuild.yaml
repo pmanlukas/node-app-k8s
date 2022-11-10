@@ -1,5 +1,6 @@
 steps:
 #install dependencies, audit dependencies and run tests
+#cloud build is great
 - name: node
   entrypoint: npm
   args: ['install']
